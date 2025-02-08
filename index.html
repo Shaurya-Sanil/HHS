@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lung Models Interactive</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #fff8f6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c5282;
+            margin-bottom: 30px;
+        }
+
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .model-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid #ffded6;
+        }
+
+        .model-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 6px rgba(240, 83, 44, 0.1);
+        }
+
+        .view-button {
+            background-color: #ff7359;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .view-button:hover {
+            background-color: #ff8f7a;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 90%;
+            height: 90%;
+            margin: 2% auto;
+            background: white;
+            border-radius: 10px;
+            border: 2px solid #f0532c;
+        }
+
+        .close-button {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            font-size: 30px;
+            cursor: pointer;
+            color: #f0532c;
+        }
+
+        .close-button:hover {
+            color: #d94725;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .header-section {
+            padding: 40px 0;
+            background: linear-gradient(135deg, #ff7359 0%, #ff8f7a 100%);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(240, 83, 44, 0.2);
+        }
+
+        .header-section h1 {
+            color: white;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header-subtitle {
+            font-size: 1.2em;
+            color: #ffe2dc;
+        }
+
+        .team-section {
+            margin-top: 60px;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .team-section h2 {
+            color: #f0532c;
+            font-size: 2em;
+            margin-bottom: 30px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .team-member {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 1px solid #ffded6;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 6px rgba(240, 83, 44, 0.1);
+        }
+
+        .member-avatar {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #f0532c;
+        }
+
+        .member-info h3 {
+            color: #2d3748;
+            margin: 0;
+            font-size: 1.1em;
+        }
+
+        .member-info p {
+            color: #4a5568;
+            margin: 5px 0 0;
+            font-size: 0.9em;
+        }
+
+        .model-grid {
+            margin: 40px 0;
+        }
+
+        .model-card h2 {
+            color: #f0532c;
+        }
+
+        @media (max-width: 768px) {
+            .header-section {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            .header-section h1 {
+                font-size: 2em;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        .sketchfab-embed-wrapper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .sketchfab-embed-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+
+        .references-section {
+            margin-top: 60px;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .reference-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .reference-item {
+            background: #fff8f6;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #ffded6;
+        }
+
+        .reference-item h3 {
+            color: #ff7359;
+            margin: 0 0 10px 0;
+        }
+
+        .reference-item a {
+            color: #ff7359;
+            text-decoration: none;
+        }
+
+        .reference-item a:hover {
+            text-decoration: underline;
+        }
+
+        .intro-section {
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-top: 60px;
+        }
+
+        .intro-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .intro-content h2 {
+            color: #f0532c;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .intro-content p {
+            color: #4a5568;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .key-features {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .feature {
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #f0532c;
+        }
+
+        .feature h3 {
+            color: #2d3748;
+            margin: 0;
+            font-size: 1.1em;
+        }
+
+        .feature p {
+            color: #4a5568;
+            margin: 5px 0 0;
+            font-size: 0.9em;
+        }
+
+        .qr-section {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .qr-container {
+            max-width: 200px;
+            margin: 20px auto;
+        }
+
+        .qr-container img {
+            width: 100%;
+            height: auto;
+        }
+
+        .model-details {
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .model-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .info-card {
+            background: #fff8f6;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #ffded6;
+        }
+
+        .info-card h3 {
+            color: #ff7359;
+            margin-bottom: 15px;
+        }
+
+        .info-card ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .info-card ul li {
+            margin: 10px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .info-card ul li:before {
+            content: "•";
+            color: #ff7359;
+            position: absolute;
+            left: 0;
+        }
+
+        @media (max-width: 768px) {
+            .key-features, .model-info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header-section">
+            <h1>HHS Presentation - 3D Models</h1>
+            <div class="header-subtitle">Interactive Lung Models for Medical Education</div>
+        </header>
+        
+        <section class="intro-section">
+            <div class="intro-content">
+                <h2>Project Overview</h2>
+                <p>This interactive presentation explores various aspects of pulmonary anatomy and medical interventions through detailed 3D models. Our focus includes healthy lung anatomy, respiratory system mechanics, and therapeutic approaches for respiratory conditions.</p>
+                <div class="key-features">
+                    <div class="feature">
+                        <span class="feature-icon">🔍</span>
+                        <h3>Interactive Models</h3>
+                        <p>Explore detailed 3D visualizations</p>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">📑</span>
+                        <h3>Research Papers</h3>
+                        <p>Scientific literature references</p>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">📱</span>
+                        <h3>QR Code Access</h3>
+                        <p>Quick mobile presentation access</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="model-grid">
+            <div class="model-card">
+                <h2>Healthy Lung Anatomy</h2>
+                <p>Explore the detailed anatomy of healthy human lungs</p>
+                <button class="view-button" onclick="openModal('model1')">View 3D Model</button>
+            </div>
+
+            <div class="model-card">
+                <h2>Respiratory System</h2>
+                <p>Complete respiratory system with airways visualization</p>
+                <button class="view-button" onclick="openModal('model2')">View 3D Model</button>
+            </div>
+
+            <div class="model-card">
+                <h2>Bronchial Tree</h2>
+                <p>Detailed view of the bronchial tree structure</p>
+                <button class="view-button" onclick="openModal('model3')">View 3D Model</button>
+            </div>
+
+            <div class="model-card">
+                <h2>Drug Therapy for Asthma and COPD</h2>
+                <p>Interactive visualization of respiratory drug therapy</p>
+                <button class="view-button" onclick="openModal('model4')">View 3D Model</button>
+            </div>
+        </div>
+
+        <section class="model-details">
+            <h2>About Our Models</h2>
+            <div class="model-info-grid">
+                <div class="info-card">
+                    <h3>Heart-Lung Machine</h3>
+                    <p>This model demonstrates the intricate mechanism of a heart-lung machine, essential in cardiopulmonary bypass procedures.</p>
+                    <ul>
+                        <li>Interactive components</li>
+                        <li>Detailed mechanical visualization</li>
+                        <li>Educational annotations</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3>Respiratory System</h3>
+                    <p>A comprehensive view of the complete respiratory system with detailed airways visualization.</p>
+                    <ul>
+                        <li>Complete anatomical structure</li>
+                        <li>Breathing mechanics</li>
+                        <li>Interactive exploration</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3>Bronchial Tree</h3>
+                    <p>Detailed visualization of the bronchial tree structure showing airway branching patterns.</p>
+                    <ul>
+                        <li>Bronchial anatomy</li>
+                        <li>Airway distribution</li>
+                        <li>Structural relationships</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3>Drug Therapy Visualization</h3>
+                    <p>Interactive demonstration of therapeutic approaches for respiratory conditions.</p>
+                    <ul>
+                        <li>Treatment mechanisms</li>
+                        <li>Drug delivery pathways</li>
+                        <li>Therapeutic effects</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="team-section">
+            <h2>Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-avatar">👤</div>
+                    <div class="member-info">
+                        <h3>Cynara</h3>
+                        <p>Roll: 10694</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-avatar">👤</div>
+                    <div class="member-info">
+                        <h3>Aditya Sable</h3>
+                        <p>Roll: 10695</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-avatar">👤</div>
+                    <div class="member-info">
+                        <h3>Aradhya</h3>
+                        <p>Roll: 10696</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-avatar">👤</div>
+                    <div class="member-info">
+                        <h3>Dilpreet</h3>
+                        <p>Roll: 10697</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-avatar">👤</div>
+                    <div class="member-info">
+                        <h3>Shaurya</h3>
+                        <p>Roll: 10698</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-avatar">👤</div>
+                    <div class="member-info">
+                        <h3>Santo</h3>
+                        <p>Roll: 10699</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-avatar">👤</div>
+                    <div class="member-info">
+                        <h3>Kushal</h3>
+                        <p>Roll: 10700</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-avatar">👤</div>
+                    <div class="member-info">
+                        <h3>Janhvi</h3>
+                        <p>Roll: 10701</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-avatar">👤</div>
+                    <div class="member-info">
+                        <h3>Pranay</h3>
+                        <p>Roll: 10702</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-avatar">👤</div>
+                    <div class="member-info">
+                        <h3>Armaan</h3>
+                        <p>Roll: 10703</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-avatar">👤</div>
+                    <div class="member-info">
+                        <h3>Ved</h3>
+                        <p>Roll: 10704</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="references-section">
+            <h2>3D Model References</h2>
+            <div class="reference-list">
+                <div class="reference-item">
+                    <h3>Heart-Lung Machine</h3>
+                    <p>By <a href="https://sketchfab.com/kevingille" target="_blank">Kevin Gille</a></p>
+                    <a href="https://sketchfab.com/3d-models/heartlung-machine-34f7d192bd8d4ca498b5e3d4948101ba" target="_blank">View Original</a>
+                </div>
+                <div class="reference-item">
+                    <h3>Lung Animation</h3>
+                    <p>By <a href="https://sketchfab.com/Ebers" target="_blank">Ebers</a></p>
+                    <a href="https://sketchfab.com/3d-models/lung-animation-acbb5f0e16a14179ae4f63c5b6b83ad7" target="_blank">View Original</a>
+                </div>
+                <div class="reference-item">
+                    <h3>Realistic Human Bronchi Alveoli Anatomy</h3>
+                    <p>By <a href="https://sketchfab.com/zames1992" target="_blank">zames1992</a></p>
+                    <a href="https://sketchfab.com/3d-models/realistic-human-bronchi-alveoli-anatomy-f15898fffdca4c5792efb2774ddab372" target="_blank">View Original</a>
+                </div>
+                <div class="reference-item">
+                    <h3>Drug Therapy for Asthma and COPD</h3>
+                    <p>By <a href="https://sketchfab.com/N351SON" target="_blank">N351SON</a></p>
+                    <a href="https://sketchfab.com/3d-models/drug-therapy-for-asthma-and-copd-fa8aee7211944f58a2234caaeb294549" target="_blank">View Original</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="qr-section">
+            <h2>Quick Access</h2>
+            <p>Scan this QR code to view this presentation on your mobile device</p>
+            <div class="qr-container">
+                <img src="HHS presentation QR CODE.png" alt="QR Code">
+            </div>
+        </section>
+
+    <!-- Modal windows for each model -->
+    <div id="model1" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('model1')">&times;</span>
+            <div class="sketchfab-embed-wrapper"> 
+                <iframe title="Heartlung Machine" 
+                    frameborder="0" 
+                    allowfullscreen 
+                    mozallowfullscreen="true" 
+                    webkitallowfullscreen="true" 
+                    allow="autoplay; fullscreen; xr-spatial-tracking" 
+                    xr-spatial-tracking 
+                    execution-while-out-of-viewport 
+                    execution-while-not-rendered 
+                    web-share 
+                    src="https://sketchfab.com/models/34f7d192bd8d4ca498b5e3d4948101ba/embed">
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <div id="model2" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('model2')">&times;</span>
+            <div class="sketchfab-embed-wrapper">
+                <iframe title="Lung animation" 
+                    frameborder="0" 
+                    allowfullscreen 
+                    mozallowfullscreen="true" 
+                    webkitallowfullscreen="true" 
+                    allow="autoplay; fullscreen; xr-spatial-tracking" 
+                    xr-spatial-tracking 
+                    execution-while-out-of-viewport 
+                    execution-while-not-rendered 
+                    web-share 
+                    src="https://sketchfab.com/models/acbb5f0e16a14179ae4f63c5b6b83ad7/embed">
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <div id="model3" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('model3')">&times;</span>
+            <div class="sketchfab-embed-wrapper">
+                <iframe title="Realistic Human Bronchi Alveoli Anatomy" 
+                    frameborder="0" 
+                    allowfullscreen 
+                    mozallowfullscreen="true" 
+                    webkitallowfullscreen="true" 
+                    allow="autoplay; fullscreen; xr-spatial-tracking" 
+                    xr-spatial-tracking 
+                    execution-while-out-of-viewport 
+                    execution-while-not-rendered 
+                    web-share 
+                    src="https://sketchfab.com/models/f15898fffdca4c5792efb2774ddab372/embed">
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <div id="model4" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('model4')">&times;</span>
+            <div class="sketchfab-embed-wrapper">
+                <iframe title="Drug Therapy for Asthma and COPD" 
+                    frameborder="0" 
+                    allowfullscreen 
+                    mozallowfullscreen="true" 
+                    webkitallowfullscreen="true" 
+                    allow="autoplay; fullscreen; xr-spatial-tracking" 
+                    xr-spatial-tracking 
+                    execution-while-out-of-viewport 
+                    execution-while-not-rendered 
+                    web-share 
+                    src="https://sketchfab.com/models/fa8aee7211944f58a2234caaeb294549/embed">
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "block";
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
