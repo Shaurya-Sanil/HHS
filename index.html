@@ -363,6 +363,52 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        .papers-section {
+            margin-top: 60px;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .papers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .paper-card {
+            background: #fff8f6;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #ffded6;
+        }
+
+        .paper-card h3 {
+            color: #ff7359;
+            margin: 0 0 15px 0;
+        }
+
+        .paper-card p {
+            color: #4a5568;
+            margin: 0 0 20px 0;
+        }
+
+        .member-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .papers-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -375,7 +421,7 @@
         <section class="intro-section">
             <div class="intro-content">
                 <h2>Project Overview</h2>
-                <p>This interactive presentation explores various aspects of pulmonary anatomy and medical interventions through detailed 3D models. Our focus includes healthy lung anatomy, respiratory system mechanics, and therapeutic approaches for respiratory conditions.</p>
+                <p>Welcome to our Human Health Systems Presentation website. Here, you'll find details about our team, 3D models related to the lungs, research papers, and a QR code to access our presentation. Explore the sections to learn more!</p>
                 <div class="key-features">
                     <div class="feature">
                         <span class="feature-icon">🔍</span>
@@ -398,7 +444,7 @@
 
         <div class="model-grid">
             <div class="model-card">
-                <h2>Healthy Lung Anatomy</h2>
+                <h2>Lung Anatomy</h2>
                 <p>Explore the detailed anatomy of healthy human lungs</p>
                 <button class="view-button" onclick="openModal('model1')">View 3D Model</button>
             </div>
@@ -410,30 +456,16 @@
             </div>
 
             <div class="model-card">
-                <h2>Bronchial Tree</h2>
-                <p>Detailed view of the bronchial tree structure</p>
-                <button class="view-button" onclick="openModal('model3')">View 3D Model</button>
-            </div>
-
-            <div class="model-card">
                 <h2>Drug Therapy for Asthma and COPD</h2>
                 <p>Interactive visualization of respiratory drug therapy</p>
-                <button class="view-button" onclick="openModal('model4')">View 3D Model</button>
+                <button class="view-button" onclick="openModal('model3')">View 3D Model</button>
             </div>
         </div>
 
         <section class="model-details">
             <h2>About Our Models</h2>
             <div class="model-info-grid">
-                <div class="info-card">
-                    <h3>Heart-Lung Machine</h3>
-                    <p>This model demonstrates the intricate mechanism of a heart-lung machine, essential in cardiopulmonary bypass procedures.</p>
-                    <ul>
-                        <li>Interactive components</li>
-                        <li>Detailed mechanical visualization</li>
-                        <li>Educational annotations</li>
-                    </ul>
-                </div>
+                
                 <div class="info-card">
                     <h3>Respiratory System</h3>
                     <p>A comprehensive view of the complete respiratory system with detailed airways visualization.</p>
@@ -468,77 +500,77 @@
             <h2>Our Team</h2>
             <div class="team-grid">
                 <div class="team-member">
-                    <div class="member-avatar">👤</div>
+                    <img src="path/to/cynara.jpg" alt="Cynara" class="member-image">
                     <div class="member-info">
                         <h3>Cynara</h3>
                         <p>Roll: 10694</p>
                     </div>
                 </div>
                 <div class="team-member">
-                    <div class="member-avatar">👤</div>
+                    <img src="path/to/aditya.jpg" alt="Aditya Sable" class="member-image">
                     <div class="member-info">
                         <h3>Aditya Sable</h3>
                         <p>Roll: 10695</p>
                     </div>
                 </div>
                 <div class="team-member">
-                    <div class="member-avatar">👤</div>
+                    <img src="path/to/aradhya.jpg" alt="Aradhya" class="member-image">
                     <div class="member-info">
                         <h3>Aradhya</h3>
                         <p>Roll: 10696</p>
                     </div>
                 </div>
                 <div class="team-member">
-                    <div class="member-avatar">👤</div>
+                    <img src="path/to/dilpreet.jpg" alt="Dilpreet" class="member-image">
                     <div class="member-info">
                         <h3>Dilpreet</h3>
                         <p>Roll: 10697</p>
                     </div>
                 </div>
                 <div class="team-member">
-                    <div class="member-avatar">👤</div>
+                    <img src="path/to/shaurya.jpg" alt="Shaurya" class="member-image">
                     <div class="member-info">
                         <h3>Shaurya</h3>
                         <p>Roll: 10698</p>
                     </div>
                 </div>
                 <div class="team-member">
-                    <div class="member-avatar">👤</div>
+                    <img src="path/to/santo.jpg" alt="Santo" class="member-image">
                     <div class="member-info">
                         <h3>Santo</h3>
                         <p>Roll: 10699</p>
                     </div>
                 </div>
                 <div class="team-member">
-                    <div class="member-avatar">👤</div>
+                    <img src="path/to/kushal.jpg" alt="Kushal" class="member-image">
                     <div class="member-info">
                         <h3>Kushal</h3>
                         <p>Roll: 10700</p>
                     </div>
                 </div>
                 <div class="team-member">
-                    <div class="member-avatar">👤</div>
+                    <img src="path/to/janhvi.jpg" alt="Janhvi" class="member-image">
                     <div class="member-info">
                         <h3>Janhvi</h3>
                         <p>Roll: 10701</p>
                     </div>
                 </div>
                 <div class="team-member">
-                    <div class="member-avatar">👤</div>
+                    <img src="path/to/pranay.jpg" alt="Pranay" class="member-image">
                     <div class="member-info">
                         <h3>Pranay</h3>
                         <p>Roll: 10702</p>
                     </div>
                 </div>
                 <div class="team-member">
-                    <div class="member-avatar">👤</div>
+                    <img src="path/to/armaan.jpg" alt="Armaan" class="member-image">
                     <div class="member-info">
                         <h3>Armaan</h3>
                         <p>Roll: 10703</p>
                     </div>
                 </div>
                 <div class="team-member">
-                    <div class="member-avatar">👤</div>
+                    <img src="path/to/ved.jpg" alt="Ved" class="member-image">
                     <div class="member-info">
                         <h3>Ved</h3>
                         <p>Roll: 10704</p>
@@ -573,13 +605,30 @@
             </div>
         </section>
 
+        <section class="papers-section">
+            <h2>Research Papers</h2>
+            <div class="papers-grid">
+                <div class="paper-card">
+                    <h3>Detection of Lung Diseases Using Deep Learning</h3>
+                    <p>A comprehensive study on using deep learning algorithms for automated detection and classification of various lung diseases through medical imaging analysis.</p>
+                    <button class="view-button" onclick="openPDF('Detection of Lung Diseases using Deep Learning.pdf')">View Paper</button>
+                </div>
+                <div class="paper-card">
+                    <h3>Lung Diseases in World Trade Center Responders</h3>
+                    <p>Research on respiratory conditions affecting WTC first responders, examining long-term health impacts and treatment approaches.</p>
+                    <button class="view-button" onclick="openPDF('Lung Diseases in World Trade Center Responders.pdf')">View Paper</button>
+                </div>
+            </div>
+        </section>
+
         <section class="qr-section">
             <h2>Quick Access</h2>
-            <p>Scan this QR code to view this presentation on your mobile device</p>
+            <p>Scan this QR code to view our  presentation on your mobile device</p>
             <div class="qr-container">
                 <img src="HHS presentation QR CODE.png" alt="QR Code">
             </div>
         </section>
+    </div>
 
     <!-- Modal windows for each model -->
     <div id="model1" class="modal">
@@ -626,26 +675,6 @@
         <div class="modal-content">
             <span class="close-button" onclick="closeModal('model3')">&times;</span>
             <div class="sketchfab-embed-wrapper">
-                <iframe title="Realistic Human Bronchi Alveoli Anatomy" 
-                    frameborder="0" 
-                    allowfullscreen 
-                    mozallowfullscreen="true" 
-                    webkitallowfullscreen="true" 
-                    allow="autoplay; fullscreen; xr-spatial-tracking" 
-                    xr-spatial-tracking 
-                    execution-while-out-of-viewport 
-                    execution-while-not-rendered 
-                    web-share 
-                    src="https://sketchfab.com/models/f15898fffdca4c5792efb2774ddab372/embed">
-                </iframe>
-            </div>
-        </div>
-    </div>
-
-    <div id="model4" class="modal">
-        <div class="modal-content">
-            <span class="close-button" onclick="closeModal('model4')">&times;</span>
-            <div class="sketchfab-embed-wrapper">
                 <iframe title="Drug Therapy for Asthma and COPD" 
                     frameborder="0" 
                     allowfullscreen 
@@ -676,6 +705,10 @@
             if (event.target.classList.contains('modal')) {
                 event.target.style.display = "none";
             }
+        }
+
+        function openPDF(filename) {
+            window.open(filename, '_blank');
         }
     </script>
 </body>
