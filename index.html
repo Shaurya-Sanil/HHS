@@ -69,6 +69,7 @@
             height: 100%;
             background-color: rgba(0,0,0,0.8);
             z-index: 1000;
+            overflow-y: auto;
         }
 
         .modal-content {
@@ -79,6 +80,8 @@
             background: white;
             border-radius: 10px;
             border: 2px solid #f0532c;
+            overflow-y: auto;
+            max-height: 90vh;
         }
 
         .close-button {
@@ -409,6 +412,401 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        .interactive-tests {
+            margin-top: 60px;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .tests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .test-card {
+            background: #fff8f6;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #ffded6;
+            transition: transform 0.3s ease;
+        }
+
+        .test-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 6px rgba(240, 83, 44, 0.1);
+        }
+
+        .breath-test-content {
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            height: auto;
+            min-height: auto;
+        }
+
+        .breath-test-container {
+            text-align: center;
+            padding-bottom: 40px;
+        }
+
+        .timer-display {
+            font-size: 4em;
+            font-weight: bold;
+            color: #f0532c;
+            margin: 30px 0;
+            font-family: monospace;
+        }
+
+        .controls {
+            margin: 20px 0;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .test-button {
+            background-color: #ff7359;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .test-button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .test-button:hover:not(:disabled) {
+            background-color: #ff8f7a;
+        }
+
+        .test-info {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff8f6;
+            border-radius: 10px;
+            border: 1px solid #ffded6;
+        }
+
+        .warning {
+            color: #f0532c;
+            font-weight: bold;
+        }
+
+        .results, .reference-values {
+            margin: 20px 0;
+            padding: 20px;
+            background: #fff8f6;
+            border-radius: 10px;
+            border: 1px solid #ffded6;
+        }
+
+        .reference-values ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .reference-values li {
+            margin: 10px 0;
+            color: #4a5568;
+        }
+
+        .feedback-message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            line-height: 1.4;
+        }
+
+        .feedback-warning {
+            background-color: #ffe5e5;
+            border: 1px solid #ffb3b3;
+            color: #cc0000;
+        }
+
+        .feedback-normal {
+            background-color: #e5f6ff;
+            border: 1px solid #b3e0ff;
+            color: #006699;
+        }
+
+        .feedback-good {
+            background-color: #e5ffe5;
+            border: 1px solid #b3ffb3;
+            color: #006600;
+        }
+
+        .health-tools {
+            margin-top: 60px;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .tool-card {
+            background: #fff8f6;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #ffded6;
+            transition: transform 0.3s ease;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 6px rgba(240, 83, 44, 0.1);
+        }
+
+        .tool-icon {
+            font-size: 2.5em;
+            margin: 15px 0;
+        }
+
+        .tool-content {
+            text-align: left;
+        }
+
+        .input-group {
+            margin: 15px 0;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #4a5568;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ffded6;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .calculate-btn {
+            background-color: #ff7359;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .calculate-btn:hover {
+            background-color: #ff8f7a;
+        }
+
+        .result-container {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            background: white;
+            display: none;
+        }
+
+        .result-container.active {
+            display: block;
+        }
+
+        .bmi-value, .pack-years, .aqi-value, .capacity-value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #f0532c;
+            margin-bottom: 10px;
+        }
+
+        .bmi-category, .health-risk, .aqi-category, .fitness-level {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .lung-health-advice, .recovery-info, .health-recommendation, .exercise-recommendation {
+            font-size: 0.9em;
+            color: #4a5568;
+            line-height: 1.4;
+        }
+
+        .fun-facts {
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin: 60px auto;
+        }
+
+        .facts-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .fact-card {
+            height: 200px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .fact-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .fact-card.flipped .fact-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .fact-front, .fact-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .fact-front {
+            background: linear-gradient(135deg, #fff8f6 0%, #ffede8 100%);
+            border: 2px solid #ffded6;
+        }
+
+        .fact-back {
+            background: linear-gradient(135deg, #ff7359 0%, #f0532c 100%);
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .fact-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .fact-hint {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .fact-back h3 {
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .fact-back p {
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 768px) {
+            .facts-container {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
+        .video-section {
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin: 60px auto;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .video-card {
+            background: #fff8f6;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .video-card h3 {
+            padding: 15px;
+            margin: 0;
+            color: #f0532c;
+            font-size: 1.2em;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-info {
+            padding: 15px;
+        }
+
+        .video-info p {
+            margin: 0 0 10px 0;
+            color: #4a5568;
+        }
+
+        .duration, .source {
+            display: inline-block;
+            margin-right: 15px;
+            font-size: 0.9em;
+            color: #718096;
+        }
+
+        @media (max-width: 768px) {
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -492,6 +890,204 @@
                         <li>Drug delivery pathways</li>
                         <li>Therapeutic effects</li>
                     </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="interactive-tests">
+            <h2>Interactive Lung Tests</h2>
+            <div class="tests-grid">
+                <div class="test-card">
+                    <h3>Breath Hold Timer Test</h3>
+                    <p>Measure your breath-holding capacity and compare with average values</p>
+                    <button class="view-button" onclick="openBreathTest()">Start Test</button>
+                </div>
+                <!-- More test cards can be added here later -->
+            </div>
+        </section>
+
+        <section class="health-tools">
+            <h2>Health Tools</h2>
+            <div class="tools-grid">
+                <!-- BMI Calculator -->
+                <div class="tool-card">
+                    <h3>BMI Calculator</h3>
+                    <div class="tool-icon">⚖️</div>
+                    <div class="tool-content">
+                        <div class="input-group">
+                            <label for="height">Height (cm):</label>
+                            <input type="number" id="height" min="100" max="250" placeholder="Enter height">
+                        </div>
+                        <div class="input-group">
+                            <label for="weight">Weight (kg):</label>
+                            <input type="number" id="weight" min="30" max="300" placeholder="Enter weight">
+                        </div>
+                        <button class="calculate-btn" onclick="calculateBMI()">Calculate BMI</button>
+                        <div class="result-container" id="bmiResult">
+                            <div class="bmi-value"></div>
+                            <div class="bmi-category"></div>
+                            <div class="lung-health-advice"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Smoking Impact Calculator -->
+                <div class="tool-card">
+                    <h3>Smoking Impact Calculator</h3>
+                    <div class="tool-icon">🚬</div>
+                    <div class="tool-content">
+                        <div class="input-group">
+                            <label for="cigarettesPerDay">Cigarettes per day:</label>
+                            <input type="number" id="cigarettesPerDay" min="0" max="100" placeholder="Enter amount">
+                        </div>
+                        <div class="input-group">
+                            <label for="yearsSmoked">Years of smoking:</label>
+                            <input type="number" id="yearsSmoked" min="0" max="70" placeholder="Enter years">
+                        </div>
+                        <button class="calculate-btn" onclick="calculateSmokingImpact()">Calculate Impact</button>
+                        <div class="result-container" id="smokingResult">
+                            <div class="pack-years"></div>
+                            <div class="health-risk"></div>
+                            <div class="recovery-info"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Air Quality Index -->
+                <div class="tool-card">
+                    <h3>Air Quality Index</h3>
+                    <div class="tool-icon">🌬️</div>
+                    <div class="tool-content">
+                        <div class="input-group">
+                            <label for="cityInput">City:</label>
+                            <input type="text" id="cityInput" placeholder="Enter city name">
+                        </div>
+                        <button class="calculate-btn" onclick="checkAirQuality()">Check AQI</button>
+                        <div class="result-container" id="aqiResult">
+                            <div class="aqi-value"></div>
+                            <div class="aqi-category"></div>
+                            <div class="health-recommendation"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercise Capacity Calculator -->
+                <div class="tool-card">
+                    <h3>Exercise Capacity Calculator</h3>
+                    <div class="tool-icon">🏃</div>
+                    <div class="tool-content">
+                        <div class="input-group">
+                            <label for="age">Age:</label>
+                            <input type="number" id="age" min="15" max="100" placeholder="Enter age">
+                        </div>
+                        <div class="input-group">
+                            <label>Gender:</label>
+                            <select id="gender">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="restingHR">Resting Heart Rate:</label>
+                            <input type="number" id="restingHR" min="40" max="120" placeholder="Beats per minute">
+                        </div>
+                        <button class="calculate-btn" onclick="calculateExerciseCapacity()">Calculate Capacity</button>
+                        <div class="result-container" id="exerciseResult">
+                            <div class="capacity-value"></div>
+                            <div class="fitness-level"></div>
+                            <div class="exercise-recommendation"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="fun-facts">
+            <h2>Fascinating Lung Facts</h2>
+            <div class="facts-container">
+                <!-- Interactive Fact Cards -->
+                <div class="fact-card" onclick="flipCard(this)">
+                    <div class="fact-card-inner">
+                        <div class="fact-front">
+                            <div class="fact-icon">🫁</div>
+                            <h3>Tap to Discover!</h3>
+                            <p class="fact-hint">How long are your airways?</p>
+                        </div>
+                        <div class="fact-back">
+                            <h3>Amazing Airways!</h3>
+                            <p>If all your airways were laid end to end, they would extend for about 2,400 kilometers (1,500 miles) — roughly the distance from Mumbai to Delhi and back!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fact-card" onclick="flipCard(this)">
+                    <div class="fact-card-inner">
+                        <div class="fact-front">
+                            <div class="fact-icon">🎈</div>
+                            <h3>Tap to Discover!</h3>
+                            <p class="fact-hint">How many air sacs are in your lungs?</p>
+                        </div>
+                        <div class="fact-back">
+                            <h3>Alveoli Army!</h3>
+                            <p>Your lungs contain about 600 million alveoli (tiny air sacs). If spread out, they would cover a tennis court! That's about 70 square meters of surface area.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fact-card" onclick="flipCard(this)">
+                    <div class="fact-card-inner">
+                        <div class="fact-front">
+                            <div class="fact-icon">⚡</div>
+                            <h3>Tap to Discover!</h3>
+                            <p class="fact-hint">How fast do you breathe?</p>
+                        </div>
+                        <div class="fact-back">
+                            <h3>Lightning Speed!</h3>
+                            <p>The signal from your brain to your lungs travels at about 300 mph! You typically breathe 12-20 times per minute, processing about 11,000 liters of air daily.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fact-card" onclick="flipCard(this)">
+                    <div class="fact-card-inner">
+                        <div class="fact-front">
+                            <div class="fact-icon">🦒</div>
+                            <h3>Tap to Discover!</h3>
+                            <p class="fact-hint">Which animal has the longest trachea?</p>
+                        </div>
+                        <div class="fact-back">
+                            <h3>Giraffe Facts!</h3>
+                            <p>A giraffe's trachea can be up to 8 feet long! This helps them maintain the high pressure needed to pump blood to their brain.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fact-card" onclick="flipCard(this)">
+                    <div class="fact-card-inner">
+                        <div class="fact-front">
+                            <div class="fact-icon">🏊‍♂️</div>
+                            <h3>Tap to Discover!</h3>
+                            <p class="fact-hint">What's special about dolphins' breathing?</p>
+                        </div>
+                        <div class="fact-back">
+                            <h3>Dolphin Power!</h3>
+                            <p>Dolphins can exchange up to 90% of their lung air in one breath, while humans only exchange about 10%. They also sleep with half their brain awake to remember to breathe!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fact-card" onclick="flipCard(this)">
+                    <div class="fact-card-inner">
+                        <div class="fact-front">
+                            <div class="fact-icon">🧬</div>
+                            <h3>Tap to Discover!</h3>
+                            <p class="fact-hint">How do your lungs clean themselves?</p>
+                        </div>
+                        <div class="fact-back">
+                            <h3>Self-Cleaning!</h3>
+                            <p>Your lungs have tiny hair-like structures called cilia that move like waves to sweep away dust and debris. They beat about 12 times per second!</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -628,6 +1224,87 @@
                 <img src="HHS presentation QR CODE.png" alt="QR Code">
             </div>
         </section>
+
+        <section class="video-section">
+            <h2>Educational Resources</h2>
+            <div class="video-grid">
+                <!-- Anatomy & Physiology -->
+                <div class="video-card">
+                    <h3>Lung Anatomy & Function</h3>
+                    <div class="video-container">
+                        <iframe width="100%" height="315" 
+                            src="https://www.youtube.com/embed/7FhzSSQxM54" 
+                            title="Respiratory System" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <p>Comprehensive animation explaining how the respiratory system and lungs work in the human body.</p>
+                        <span class="duration">🕒 8:51</span>
+                        <span class="source">Source: Alila Medical Media</span>
+                    </div>
+                </div>
+
+                <!-- Common Diseases -->
+                <div class="video-card">
+                    <h3>Understanding COPD</h3>
+                    <div class="video-container">
+                        <iframe width="100%" height="315" 
+                            src="https://www.youtube.com/embed/T1G9Rl65M-Q" 
+                            title="COPD Explained" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <p>Clear explanation of Chronic Obstructive Pulmonary Disease (COPD) and its effects.</p>
+                        <span class="duration">🕒 4:52</span>
+                        <span class="source">Source: Osmosis</span>
+                    </div>
+                </div>
+
+                <!-- Breathing Techniques -->
+                <div class="video-card">
+                    <h3>Improve Your Breathing</h3>
+                    <div class="video-container">
+                        <iframe width="100%" height="315" 
+                            src="https://www.youtube.com/embed/f6yAY1oZUOA" 
+                            title="Breathing Techniques" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <p>5 effective ways to improve your breathing with expert James Nestor.</p>
+                        <span class="duration">🕒 5:37</span>
+                        <span class="source">Source: MedCircle</span>
+                    </div>
+                </div>
+
+                <!-- Gas Exchange -->
+                <div class="video-card">
+                    <h3>Gas Exchange Process</h3>
+                    <div class="video-container">
+                        <iframe width="100%" height="315" 
+                            src="https://www.youtube.com/embed/6qnSsV2syUE" 
+                            title="Gas Exchange" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <p>Detailed animation explaining gas exchange and partial pressures in the lungs.</p>
+                        <span class="duration">🕒 6:15</span>
+                        <span class="source">Source: Osmosis</span>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
     <!-- Modal windows for each model -->
@@ -691,6 +1368,41 @@
         </div>
     </div>
 
+    <div id="breathTestModal" class="modal">
+        <div class="modal-content breath-test-content">
+            <span class="close-button" onclick="closeBreathTest()">&times;</span>
+            <div class="breath-test-container">
+                <h2>Breath Hold Timer</h2>
+                <div class="test-info">
+                    <p>Test your lung capacity by holding your breath. Please ensure you're seated and comfortable before starting.</p>
+                    <p class="warning">⚠️ Stop immediately if you feel dizzy or uncomfortable</p>
+                </div>
+                <div class="timer-display">
+                    <span id="minutes">00</span>:<span id="seconds">00</span>.<span id="milliseconds">00</span>
+                </div>
+                <div class="controls">
+                    <button id="startBtn" class="test-button">Start Test</button>
+                    <button id="stopBtn" class="test-button" disabled>Stop</button>
+                    <button id="resetBtn" class="test-button" disabled>Reset</button>
+                </div>
+                <div class="results" id="results">
+                    <h3>Your Results</h3>
+                    <p>Last attempt: <span id="lastResult">-</span></p>
+                    <p>Personal best: <span id="bestResult">-</span></p>
+                    <div id="resultFeedback" class="feedback-message"></div>
+                </div>
+                <div class="reference-values">
+                    <h3>Reference Values</h3>
+                    <ul>
+                        <li>Untrained adults: 30-60 seconds</li>
+                        <li>Swimmers: 45-70 seconds</li>
+                        <li>Professional athletes: 60-90 seconds</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         function openModal(modalId) {
             document.getElementById(modalId).style.display = "block";
@@ -710,6 +1422,339 @@
         function openPDF(filename) {
             window.open(filename, '_blank');
         }
+
+        let timer;
+        let isRunning = false;
+        let startTime;
+        let bestTime = 0;
+
+        function openBreathTest() {
+            document.getElementById('breathTestModal').style.display = "block";
+        }
+
+        function closeBreathTest() {
+            document.getElementById('breathTestModal').style.display = "none";
+            stopTimer();
+            resetTimer();
+        }
+
+        function startTimer() {
+            if (!isRunning) {
+                isRunning = true;
+                startTime = Date.now();
+                document.getElementById('startBtn').disabled = true;
+                document.getElementById('stopBtn').disabled = false;
+                document.getElementById('resetBtn').disabled = true;
+
+                timer = setInterval(updateTimer, 10);
+            }
+        }
+
+        function stopTimer() {
+            if (isRunning) {
+                isRunning = false;
+                clearInterval(timer);
+                const elapsed = Date.now() - startTime;
+                document.getElementById('lastResult').textContent = formatTime(elapsed);
+                
+                // Add feedback message
+                const feedback = getFeedbackMessage(elapsed);
+                const feedbackDiv = document.getElementById('resultFeedback');
+                feedbackDiv.textContent = feedback.message;
+                feedbackDiv.className = `feedback-message ${feedback.class}`;
+                
+                if (elapsed > bestTime) {
+                    bestTime = elapsed;
+                    document.getElementById('bestResult').textContent = formatTime(elapsed);
+                }
+                document.getElementById('startBtn').disabled = false;
+                document.getElementById('stopBtn').disabled = true;
+                document.getElementById('resetBtn').disabled = false;
+            }
+        }
+
+        function resetTimer() {
+            clearInterval(timer);
+            isRunning = false;
+            document.getElementById('minutes').textContent = '00';
+            document.getElementById('seconds').textContent = '00';
+            document.getElementById('milliseconds').textContent = '00';
+            document.getElementById('resultFeedback').textContent = '';
+            document.getElementById('startBtn').disabled = false;
+            document.getElementById('stopBtn').disabled = true;
+            document.getElementById('resetBtn').disabled = true;
+        }
+
+        function updateTimer() {
+            const elapsed = Date.now() - startTime;
+            const minutes = Math.floor(elapsed / 60000);
+            const seconds = Math.floor((elapsed % 60000) / 1000);
+            const milliseconds = Math.floor((elapsed % 1000) / 10);
+
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            document.getElementById('milliseconds').textContent = milliseconds.toString().padStart(2, '0');
+        }
+
+        function formatTime(ms) {
+            const minutes = Math.floor(ms / 60000);
+            const seconds = Math.floor((ms % 60000) / 1000);
+            const milliseconds = Math.floor((ms % 1000) / 10);
+            return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${milliseconds.toString().padStart(2, '0')}`;
+        }
+
+        function getFeedbackMessage(timeInMs) {
+            const seconds = timeInMs / 1000;
+            
+            if (seconds < 10) {
+                return {
+                    message: "⚠️ Your breath-holding time is significantly below average. This could indicate respiratory issues. Please consult a healthcare provider for a proper evaluation.",
+                    class: "feedback-warning"
+                };
+            }
+            else if (seconds < 20) {
+                return {
+                    message: "Your breath-holding time is below average. Regular breathing exercises could help improve your lung capacity. Consider consulting a healthcare provider if you have any concerns.",
+                    class: "feedback-warning"
+                };
+            }
+            else if (seconds < 30) {
+                return {
+                    message: "Your breath-holding time is approaching the normal range. With regular practice and breathing exercises, you can improve this further.",
+                    class: "feedback-normal"
+                };
+            }
+            else if (seconds < 45) {
+                return {
+                    message: "Good job! Your breath-holding time is within the normal range for untrained adults. Regular exercise can help improve this further.",
+                    class: "feedback-normal"
+                };
+            }
+            else if (seconds < 60) {
+                return {
+                    message: "Very good! Your breath-holding time is in the upper range for untrained adults. This suggests healthy lung function.",
+                    class: "feedback-good"
+                };
+            }
+            else if (seconds < 90) {
+                return {
+                    message: "Excellent! Your breath-holding time is comparable to trained swimmers. This indicates strong lung capacity and good overall fitness.",
+                    class: "feedback-good"
+                };
+            }
+            else if (seconds < 120) {
+                return {
+                    message: "Outstanding! Your breath-holding time is at an athletic level. This suggests excellent lung capacity and cardiovascular fitness.",
+                    class: "feedback-good"
+                };
+            }
+            else {
+                return {
+                    message: "⚠️ While your breath-holding time is impressive, please exercise caution with extended breath-holding. Always practice breathing exercises in a safe environment.",
+                    class: "feedback-warning"
+                };
+            }
+        }
+
+        // Add event listeners after DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('startBtn').addEventListener('click', startTimer);
+            document.getElementById('stopBtn').addEventListener('click', stopTimer);
+            document.getElementById('resetBtn').addEventListener('click', resetTimer);
+        });
+
+        // BMI Calculator
+        function calculateBMI() {
+            const height = parseFloat(document.getElementById('height').value) / 100; // convert cm to m
+            const weight = parseFloat(document.getElementById('weight').value);
+            const resultContainer = document.getElementById('bmiResult');
+            
+            if (!height || !weight || height <= 0 || weight <= 0) {
+                alert('Please enter valid height and weight values');
+                return;
+            }
+
+            const bmi = weight / (height * height);
+            const bmiValue = bmi.toFixed(1);
+            let category, advice;
+
+            if (bmi < 18.5) {
+                category = "Underweight";
+                advice = "Being underweight may affect lung capacity. Focus on proper nutrition and consider consulting a healthcare provider.";
+            } else if (bmi < 25) {
+                category = "Normal weight";
+                advice = "Maintain your healthy weight through balanced diet and regular exercise for optimal lung function.";
+            } else if (bmi < 30) {
+                category = "Overweight";
+                advice = "Extra weight can affect breathing efficiency. Consider gentle exercise and dietary adjustments.";
+            } else {
+                category = "Obese";
+                advice = "Excess weight significantly impacts lung function. Consult a healthcare provider for personalized advice.";
+            }
+
+            resultContainer.querySelector('.bmi-value').textContent = `BMI: ${bmiValue}`;
+            resultContainer.querySelector('.bmi-category').textContent = `Category: ${category}`;
+            resultContainer.querySelector('.lung-health-advice').textContent = advice;
+            resultContainer.style.display = 'block';
+        }
+
+        // Smoking Impact Calculator
+        function calculateSmokingImpact() {
+            const cigarettesPerDay = parseInt(document.getElementById('cigarettesPerDay').value);
+            const yearsSmoked = parseInt(document.getElementById('yearsSmoked').value);
+            const resultContainer = document.getElementById('smokingResult');
+
+            if (!cigarettesPerDay || !yearsSmoked || cigarettesPerDay < 0 || yearsSmoked < 0) {
+                alert('Please enter valid values');
+                return;
+            }
+
+            const packYears = (cigarettesPerDay / 20) * yearsSmoked;
+            let riskLevel, recoveryInfo;
+
+            if (packYears < 10) {
+                riskLevel = "Moderate Risk";
+                recoveryInfo = "Quitting now can significantly reduce health risks. Lung function can improve within weeks.";
+            } else if (packYears < 20) {
+                riskLevel = "High Risk";
+                recoveryInfo = "Consider immediate cessation. Substantial recovery possible within months of quitting.";
+            } else {
+                riskLevel = "Very High Risk";
+                recoveryInfo = "Urgent medical consultation recommended. Long-term damage may be present.";
+            }
+
+            resultContainer.querySelector('.pack-years').textContent = `Pack Years: ${packYears.toFixed(1)}`;
+            resultContainer.querySelector('.health-risk').textContent = `Risk Level: ${riskLevel}`;
+            resultContainer.querySelector('.recovery-info').textContent = recoveryInfo;
+            resultContainer.style.display = 'block';
+        }
+
+        // Air Quality Index Checker with your API token
+        async function checkAirQuality() {
+            const city = document.getElementById('cityInput').value;
+            const resultContainer = document.getElementById('aqiResult');
+            const API_TOKEN = '11a2d54472cb9228ca936f739428152fde42e79a';
+            
+            if (!city) {
+                alert('Please enter a city name');
+                return;
+            }
+
+            try {
+                const response = await fetch(`https://api.waqi.info/feed/${city}/?token=${API_TOKEN}`);
+                const data = await response.json();
+
+                if (data.status === 'ok') {
+                    const aqi = data.data.aqi;
+                    let category, recommendation;
+
+                    if (aqi <= 50) {
+                        category = "Good";
+                        recommendation = "Air quality is ideal for outdoor activities.";
+                    } else if (aqi <= 100) {
+                        category = "Moderate";
+                        recommendation = "Sensitive individuals should consider limiting prolonged outdoor exposure.";
+                    } else if (aqi <= 150) {
+                        category = "Unhealthy for Sensitive Groups";
+                        recommendation = "People with respiratory conditions should limit outdoor activities.";
+                    } else if (aqi <= 200) {
+                        category = "Unhealthy";
+                        recommendation = "Everyone should reduce outdoor activities. Wear masks if necessary.";
+                    } else if (aqi <= 300) {
+                        category = "Very Unhealthy";
+                        recommendation = "Avoid outdoor activities. Keep windows closed.";
+                    } else {
+                        category = "Hazardous";
+                        recommendation = "Stay indoors and use air purifiers if available.";
+                    }
+
+                    resultContainer.querySelector('.aqi-value').textContent = `AQI: ${aqi}`;
+                    resultContainer.querySelector('.aqi-category').textContent = `Category: ${category}`;
+                    resultContainer.querySelector('.health-recommendation').textContent = recommendation;
+                } else {
+                    throw new Error('City not found');
+                }
+            } catch (error) {
+                resultContainer.querySelector('.aqi-value').textContent = 'Error';
+                resultContainer.querySelector('.aqi-category').textContent = 'Could not fetch AQI data';
+                resultContainer.querySelector('.health-recommendation').textContent = 'Please try again later or check city spelling';
+            }
+            
+            resultContainer.style.display = 'block';
+        }
+
+        // Exercise Capacity Calculator
+        function calculateExerciseCapacity() {
+            const age = parseInt(document.getElementById('age').value);
+            const gender = document.getElementById('gender').value;
+            const restingHR = parseInt(document.getElementById('restingHR').value);
+            const resultContainer = document.getElementById('exerciseResult');
+
+            if (!age || !restingHR || age < 15 || age > 100 || restingHR < 40 || restingHR > 120) {
+                alert('Please enter valid values');
+                return;
+            }
+
+            // Estimated VO2 Max calculation using Heart Rate Reserve method
+            const maxHR = 220 - age;
+            const hrReserve = maxHR - restingHR;
+            let vo2Max = 0;
+
+            if (gender === 'male') {
+                vo2Max = (15.3 * (maxHR/restingHR));
+            } else {
+                vo2Max = (15.3 * (maxHR/restingHR)) * 0.9;
+            }
+
+            let fitnessLevel, recommendation;
+
+            if (vo2Max < 30) {
+                fitnessLevel = "Below Average";
+                recommendation = "Start with light exercises like walking. Gradually increase intensity.";
+            } else if (vo2Max < 40) {
+                fitnessLevel = "Average";
+                recommendation = "Maintain regular moderate exercise. Consider adding cardio activities.";
+            } else if (vo2Max < 50) {
+                fitnessLevel = "Above Average";
+                recommendation = "Good fitness level. Mix high and low-intensity workouts.";
+            } else {
+                fitnessLevel = "Excellent";
+                recommendation = "Maintain your high fitness level with varied exercises.";
+            }
+
+            resultContainer.querySelector('.capacity-value').textContent = `VO2 Max: ${vo2Max.toFixed(1)} ml/kg/min`;
+            resultContainer.querySelector('.fitness-level').textContent = `Fitness Level: ${fitnessLevel}`;
+            resultContainer.querySelector('.exercise-recommendation').textContent = recommendation;
+            resultContainer.style.display = 'block';
+        }
+
+        // Add event listeners for Enter key in input fields
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('.input-group input');
+            inputs.forEach(input => {
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        const card = this.closest('.tool-card');
+                        card.querySelector('.calculate-btn').click();
+                    }
+                });
+            });
+        });
+
+        function flipCard(card) {
+            card.classList.toggle('flipped');
+        }
+
+        // Add touch support for mobile devices
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.fact-card');
+            cards.forEach(card => {
+                card.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    flipCard(this);
+                });
+            });
+        });
     </script>
 </body>
 </html>
